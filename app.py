@@ -23,5 +23,15 @@ def index():
         return render_template('index.html', interventions=assessed_interventions, data=phases_of_birth)
     return render_template('index.html', interventions=None)
 
+@app.route('/cockpit')
+def cockpit():
+    return render_template('cockpit_view.html')
+
+@app.route('/patient/<patient_id>')
+def patient_detail(patient_id):
+    # In a real application, you would fetch patient data based on the patient_id
+    # For now, we'll just render the template.
+    return render_template('detailed_patient_view.html', patient_id=patient_id)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True)
