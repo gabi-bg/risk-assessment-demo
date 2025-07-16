@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Patient Detail View</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <style type="text/tailwindcss">
+        :root {
+            --primary-color: #5e9ec9;
+            --secondary-color: #e0f2f7;
+            --background-color: #f8fafc;
+            --text-primary: #1e3a8a;
+            --text-secondary: #64748b;
+            --accent-color: #bfdbfe;
+            --danger-color: #ef4444;
+            --danger-bg: #fee2e2;
+            --success-color: #10b981;
+            --success-bg: #d1fae5;
+        }
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: var(--background-color);
+        }
+        .button_primary {
+            @apply bg-[var(--primary-color)] text-white rounded-full px-6 py-2.5 font-semibold text-sm shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600;
+        }
+        .button_secondary {
+            @apply bg-[var(--secondary-color)] text-[var(--primary-color)] rounded-full px-6 py-2.5 font-semibold text-sm shadow-sm hover:bg-blue-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600;
+        }
+        .tab-active {
+            @apply border-b-2 border-[var(--primary-color)] text-[var(--primary-color)] pb-3;
+        }
+        .tab-inactive {
+            @apply border-b-2 border-transparent text-[var(--text-secondary)] pb-3 hover:border-gray-300 hover:text-gray-700;
+        }
+    </style>
+</head>
+<body>
+<div class="min-h-screen">
+    <header class="bg-white shadow-sm">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <a class="flex items-center gap-2 text-[var(--text-primary)]" href="#">
+                        <span class="material-icons text-3xl">local_hospital</span>
+                        <span class="text-xl font-bold">MaternityCare</span>
+                    </a>
+                </div>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)]" href="#">Dashboard</a>
+                    <a class="text-sm font-medium text-[var(--text-primary)]" href="#">Labor Ward Cockpit</a>
+                    <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)]" href="#">Patient List</a>
+                    <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)]" href="#">Resources</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <button class="relative rounded-full bg-white p-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" type="button">
+                        <span class="material-icons">notifications</span>
+                    </button>
+                    <img alt="User profile" class="h-8 w-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA59wY_BtnxH1bKg0pD2CAux-_4DQ-PVsund3g6FXAGhHAKKKqzQNAFnvpELkEujjCQCccuB5HqoaIbshJ4Yh31plYFRJxh6JY-aNKxkW8JYmQc2x2F1D7B1p1jqxyZ3nROH2LgtM9eT0irdQDOWttZLVo1pYpzhTDvkkn9DY6tl3TkMLXFEyS_b0OqDD2iM83Bx-VUne4Wc0sRBpUFxIQmU1Zz_38NRRfnK6Znm_vwX8RWKcxJ5uP0PVvOou4iFismfTqhjNfMJ4U"/>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            <div class="lg:col-span-2">
+                <div class="mb-6">
+                    <a class="flex items-center gap-1 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] mb-4" href="#">
+                        <span class="material-icons">arrow_back_ios</span>
+                        Back to Cockpit View
+                    </a>
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h1 class="text-3xl font-bold text-[var(--text-primary)]">Sarah Miller</h1>
+                            <p class="text-[var(--text-secondary)]">Patient ID: 123456789</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 shadow-sm rounded-lg mb-8">
+                    <h2 class="text-xl font-semibold text-[var(--text-primary)] mb-4">Key Metrics</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-lg font-medium text-[var(--text-secondary)] mb-2">Cervical Dilation</h3>
+                            <div class="flex items-center gap-4">
+                                <p class="text-5xl font-bold text-[var(--primary-color)]">6<span class="text-2xl">cm</span></p>
+                                <div class="w-full bg-gray-200 rounded-full h-4">
+                                    <div class="bg-[var(--primary-color)] h-4 rounded-full" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between text-xs text-[var(--text-secondary)] mt-1">
+                                <span>0cm</span>
+                                <span>5cm</span>
+                                <span>10cm</span>
+                            </div>
+                            <p class="text-sm text-[var(--text-secondary)] mt-2">Last updated: 5 mins ago</p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium text-[var(--text-secondary)] mb-2">Fetal Heart Rate (FHR)</h3>
+                            <div class="flex items-baseline gap-2">
+                                <p class="text-5xl font-bold text-[var(--success-color)]">135</p>
+                                <p class="text-xl font-semibold text-[var(--text-secondary)]">bpm</p>
+                            </div>
+                            <div class="mt-2 h-20">
+                                <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                                    <path class="stroke-current text-[var(--success-color)]" d="M0 45 C 10 30, 20 50, 30 40 S 50 20, 60 35 S 80 55, 90 45 S 110 30, 120 40 S 140 50, 150 42 S 170 30, 180 38 S 190 50, 200 45" stroke-width="2"></path>
+                                    <line class="stroke-current text-gray-300" stroke-dasharray="2 2" x1="0" x2="200" y1="20" y2="20"></line>
+                                    <line class="stroke-current text-gray-300" stroke-dasharray="2 2" x1="0" x2="200" y1="55" y2="55"></line>
+                                </svg>
+                            </div>
+                            <p class="text-sm text-center text-[var(--text-secondary)] -mt-1">Last 30 minutes</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 border-t pt-4">
+                        <div class="rounded-md bg-[var(--danger-bg)] p-4">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <span class="material-icons text-[var(--danger-color)]">error</span>
+                                </div>
+                                <div class="ml-3">
+                                    <h3 class="text-sm font-medium text-[var(--danger-color)]">Elevated Blood Pressure Alert</h3>
+                                    <div class="mt-2 text-sm text-red-700">
+                                        <p>Last reading: 150/95 mmHg. Requires immediate attention.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-b border-gray-200">
+                    <nav aria-label="Tabs" class="-mb-px flex space-x-8">
+                        <a class="tab-active whitespace-nowrap text-sm font-medium" href="#">Overview</a>
+                        <a class="tab-inactive whitespace-nowrap text-sm font-medium" href="#">Vitals</a>
+                        <a class="tab-inactive whitespace-nowrap text-sm font-medium" href="#">CTG</a>
+                        <a class="tab-inactive whitespace-nowrap text-sm font-medium" href="#">Interventions</a>
+                        <a class="tab-inactive whitespace-nowrap text-sm font-medium" href="#">Care Plan</a>
+                    </nav>
+                </div>
+                <div class="mt-8 space-y-8">
+                    <div class="bg-white p-6 shadow-sm rounded-lg">
+                        <h2 class="text-xl font-semibold text-[var(--text-primary)] mb-4">Patient Information</h2>
+                        <dl class="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
+                            <div class="sm:col-span-1">
+                                <dt class="text-sm font-medium text-[var(--text-secondary)]">Age</dt>
+                                <dd class="mt-1 text-sm text-[var(--text-primary)] font-semibold">32</dd>
+                            </div>
+                            <div class="sm:col-span-1">
+                                <dt class="text-sm font-medium text-[var(--text-secondary)]">Gravida/Para</dt>
+                                <dd class="mt-1 text-sm text-[var(--text-primary)] font-semibold">G2P1</dd>
+                            </div>
+                            <div class="sm:col-span-1">
+                                <dt class="text-sm font-medium text-[var(--text-secondary)]">Gestational Age</dt>
+                                <dd class="mt-1 text-sm text-[var(--text-primary)] font-semibold">38 weeks</dd>
+                            </div>
+                            <div class="sm:col-span-1">
+                                <dt class="text-sm font-medium text-[var(--text-secondary)]">Membranes</dt>
+                                <dd class="mt-1 text-sm text-[var(--text-primary)] font-semibold">Intact</dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="bg-white p-6 shadow-sm rounded-lg">
+                        <h2 class="text-xl font-semibold text-[var(--text-primary)] mb-4">Current Status</h2>
+                        <dl class="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
+                            <div class="sm:col-span-1">
+                                <dt class="text-sm font-medium text-[var(--text-secondary)]">Risk Level</dt>
+                                <dd class="mt-1 text-sm font-semibold inline-flex items-center rounded-full bg-yellow-100 px-3 py-1 text-yellow-800">Medium</dd>
+                            </div>
+                            <div class="sm:col-span-1">
+                                <dt class="text-sm font-medium text-[var(--text-secondary)]">Admission Time</dt>
+                                <dd class="mt-1 text-sm text-[var(--text-primary)] font-semibold">2 hours ago</dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="bg-white p-6 shadow-sm rounded-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-xl font-semibold text-[var(--text-primary)]">Recent Observations</h2>
+                            <button class="button_secondary flex items-center gap-2" type="button">
+                                <span class="material-icons text-base">add</span>
+                                Add Observation
+                            </button>
+                        </div>
+                        <ul class="divide-y divide-gray-200" role="list">
+                            <li class="py-4">
+                                <div class="flex space-x-3">
+                                    <div class="flex-shrink-0 self-center">
+                                        <span class="material-icons text-3xl text-[var(--primary-color)]">monitor_heart</span>
+                                    </div>
+                                    <div class="flex-1 space-y-1">
+                                        <div class="flex items-center justify-between">
+                                            <h3 class="text-sm font-medium text-[var(--text-primary)]">Contraction Assessment</h3>
+                                            <p class="text-sm text-[var(--text-secondary)]">1 hour ago</p>
+                                        </div>
+                                        <p class="text-sm text-[var(--text-secondary)]">Contractions: 3 in 10 minutes, moderate strength.</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="py-4">
+                                <div class="flex space-x-3">
+                                    <div class="flex-shrink-0 self-center">
+                                        <span class="material-icons text-3xl text-[var(--primary-color)]">child_care</span>
+                                    </div>
+                                    <div class="flex-1 space-y-1">
+                                        <div class="flex items-center justify-between">
+                                            <h3 class="text-sm font-medium text-[var(--text-primary)]">Fetal Heart Rate</h3>
+                                            <p class="text-sm text-[var(--text-secondary)]">2 hours ago</p>
+                                        </div>
+                                        <p class="text-sm text-[var(--text-secondary)]">FHR: 140 bpm, regular.</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:col-span-1">
+                <div class="sticky top-8 space-y-6">
+                    <div class="bg-white p-6 shadow-sm rounded-lg">
+                        <h2 class="text-xl font-semibold text-[var(--text-primary)] mb-4">Quick Actions</h2>
+                        <div class="space-y-3">
+                            <button class="button_primary w-full justify-center" type="button">Update Care Plan</button>
+                            <button class="button_secondary w-full justify-center" type="button">Communicate with Staff</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body></html>

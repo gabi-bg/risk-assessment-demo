@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maternity Risk Assessment Tool</title>
+</head>
+<body>
+    <h1>Maternity Risk Assessment Tool</h1>
+    <form action="/" method="post">
+        <label for="pain_level">Pain Level (0-10):</label><br>
+        <input type="number" id="pain_level" name="pain_level" min="0" max="10" required><br><br>
+
+        <label for="dilation">Dilation (cm):</label><br>
+        <input type="number" id="dilation" name="dilation" min="0" max="10" required><br><br>
+
+        <label for="ctg">CTG Status:</label><br>
+        <select id="ctg" name="ctg" required>
+            <option value="reassuring">Reassuring</option>
+            <option value="non_reassuring">Non-reassuring</option>
+        </select><br><br>
+
+        <input type="submit" value="Assess Risk">
+    </form>
+
+    {% if interventions %}
+    <h2>Assessment Results</h2>
+    <h3>Top 3 Most Likely Interventions:</h3>
+    <ol>
+        {% for intervention, score in interventions[:3] %}
+        <li>
+            <strong>{{ intervention.replace('_', ' ').title() }}</strong>
+            <p>Side Effects: {{ data['latent_phase']['interventions'][intervention]['side_effects']|join(', ') }}</p>
+        </li>
+        {% endfor %}
+    </ol>
+    {% endif %}
+</body>
+</html>
