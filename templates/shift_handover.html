@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Shift Handover Summary</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+        :root {
+            --primary-color: #5e9ec9;
+            --secondary-color: #e0f2f7;
+            --background-color: #f8fafc;
+            --text-primary: #334155;
+            --text-secondary: #64748b;
+            --accent-color: #bfdbfe;
+            --high-risk-bg: #fee2e2;
+            --high-risk-text: #b91c1c;
+            --moderate-risk-bg: #ffedd5;
+            --moderate-risk-text: #c2410c;
+            --low-risk-bg: #dcfce7;
+            --low-risk-text: #166534;
+        }
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+        }
+        .main_container {
+            @apply container mx-auto px-4 py-8;
+        }
+        .button_primary {
+            @apply bg-[var(--primary-color)] text-white rounded-full px-4 py-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
+        }
+        .button_secondary {
+            @apply bg-[var(--secondary-color)] text-[var(--primary-color)] rounded-full px-4 py-2 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
+        }
+        .input {
+            @apply bg-white border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+        }
+        .typography_h1 {
+            @apply text-3xl font-bold text-[var(--text-primary)];
+        }
+        .typography_h2 {
+            @apply text-2xl font-semibold text-[var(--text-primary)];
+        }
+        .typography_body {
+            @apply text-base text-[var(--text-secondary)];
+        }
+        .table-container {
+            @apply bg-white rounded-lg shadow-sm overflow-hidden;
+        }
+        .table-header {
+            @apply px-6 py-4 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider bg-gray-50;
+        }
+        .table-cell {
+            @apply px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)];
+        }
+        .patient-name {
+            @apply font-medium text-[var(--text-primary)];
+        }
+        .risk-badge {
+            @apply px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full;
+        }
+        .high-risk {
+            @apply bg-[var(--high-risk-bg)] text-[var(--high-risk-text)];
+        }
+        .moderate-risk {
+            @apply bg-[var(--moderate-risk-bg)] text-[var(--moderate-risk-text)];
+        }
+        .low-risk {
+            @apply bg-[var(--low-risk-bg)] text-[var(--low-risk-text)];
+        }
+    </style>
+</head>
+<body class="bg-background-color">
+<div class="relative flex size-full min-h-screen flex-col">
+    <header class="bg-white shadow-sm">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center gap-4 text-primary-color">
+                    <div class="h-8 w-8 text-[var(--primary-color)]">
+                        <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <h1 class="text-xl font-bold text-[var(--text-primary)]">Maternity Care</h1>
+                </div>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">Dashboard</a>
+                    <a class="text-sm font-medium text-[var(--primary-color)]" href="#">Patients</a>
+                    <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">Reports</a>
+                    <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">Settings</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <button class="p-2 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-color">
+                        <svg aria-hidden="true" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.017 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB-JllJNKa21D8h0Wa4RAYOxOfIzcyU2X0igX0QUpAo9xR1Wkd_szt8a1lQLnKjfBTriUD-ZPQBtOV5cnLpK8RH-MBQcz5nq2Vi5Wr4HQBPFf90sC2zg6T2U8_XGoG69R_ZBUKmwDs5UfAwCaL9MewLCoH_sypKMCraJJRvZ-fZv5Zk_TzmafwEngNLSLs84IPY4IeqlEciPeEUtyrtaBvHffS_T_2tiMQPzhmAUp4dakVvMTwjQ7_qGeGBKGfigZxwBmcDYGUQyD0");'></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="flex-1">
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+                    <div>
+                        <h1 class="typography_h1">Shift Handover Summary</h1>
+                        <p class="typography_body mt-1">Last Updated: 10/26/2024, 10:00 AM</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <select class="input">
+                            <option>Sort by Risk Level</option>
+                            <option>Sort by Patient Name</option>
+                            <option>Sort by Room Number</option>
+                        </select>
+                        <button class="button_primary">
+                            <svg class="h-5 w-5 mr-1 inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" fill-rule="evenodd"></path>
+                            </svg>
+                            Filter
+                        </button>
+                        <div class="relative" x-data="{ open: false }">
+                            <button @click="open = !open" class="button_secondary flex items-center">
+                                <svg class="h-5 w-5 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"></path>
+                                </svg>
+                                Customize
+                            </button>
+                            <div @click.away="open = false" class="absolute right-0 mt-2 w-72 bg-white rounded-lg shadow-xl z-10 p-4 border" style="display: none;" x-show="open">
+                                <h3 class="text-lg font-semibold text-text-primary mb-4">Customize Summary View</h3>
+                                <div class="space-y-3">
+                                    <p class="text-sm font-medium text-text-primary">Displayed Information Fields</p>
+                                    <div class="space-y-2">
+                                        <label class="flex items-center space-x-2 cursor-pointer">
+                                            <input checked="" class="form-checkbox h-4 w-4 text-[var(--primary-color)] rounded focus:ring-blue-500" type="checkbox"/>
+                                            <span class="text-sm text-text-secondary">Patient</span>
+                                        </label>
+                                        <label class="flex items-center space-x-2 cursor-pointer">
+                                            <input checked="" class="form-checkbox h-4 w-4 text-[var(--primary-color)] rounded focus:ring-blue-500" type="checkbox"/>
+                                            <span class="text-sm text-text-secondary">Room</span>
+                                        </label>
+                                        <label class="flex items-center space-x-2 cursor-pointer">
+                                            <input checked="" class="form-checkbox h-4 w-4 text-[var(--primary-color)] rounded focus:ring-blue-500" type="checkbox"/>
+                                            <span class="text-sm text-text-secondary">Risk Level</span>
+                                        </label>
+                                        <label class="flex items-center space-x-2 cursor-pointer">
+                                            <input class="form-checkbox h-4 w-4 text-[var(--primary-color)] rounded focus:ring-blue-500" type="checkbox"/>
+                                            <span class="text-sm text-text-secondary">Recent Vital Signs Changes</span>
+                                        </label>
+                                        <label class="flex items-center space-x-2 cursor-pointer">
+                                            <input checked="" class="form-checkbox h-4 w-4 text-[var(--primary-color)] rounded focus:ring-blue-500" type="checkbox"/>
+                                            <span class="text-sm text-text-secondary">Pending Interventions</span>
+                                        </label>
+                                        <label class="flex items-center space-x-2 cursor-pointer">
+                                            <input class="form-checkbox h-4 w-4 text-[var(--primary-color)] rounded focus:ring-blue-500" type="checkbox"/>
+                                            <span class="text-sm text-text-secondary">Flagged Communications</span>
+                                        </label>
+                                        <label class="flex items-center space-x-2 cursor-pointer">
+                                            <input class="form-checkbox h-4 w-4 text-[var(--primary-color)] rounded focus:ring-blue-500" type="checkbox"/>
+                                            <span class="text-sm text-text-secondary">Assigned Staff</span>
+                                        </label>
+                                        <label class="flex items-center space-x-2 cursor-pointer">
+                                            <input class="form-checkbox h-4 w-4 text-[var(--primary-color)] rounded focus:ring-blue-500" type="checkbox"/>
+                                            <span class="text-sm text-text-secondary">Estimated Delivery Time</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="mt-6 flex justify-end gap-2">
+                                    <button @click="open = false" class="button_secondary px-3 py-1 text-sm">Cancel</button>
+                                    <button @click="open = false" class="button_primary px-3 py-1 text-sm">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-12">
+                    <section>
+                        <h2 class="typography_h2 mb-4 flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-[var(--high-risk-text)]"></span>
+                            High Risk Patients
+                        </h2>
+                        <div class="table-container">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="table-header" scope="col">Patient</th>
+                                    <th class="table-header" scope="col">Room</th>
+                                    <th class="table-header" scope="col">Gestational Age</th>
+                                    <th class="table-header" scope="col">Key Updates</th>
+                                    <th class="table-header" scope="col">Pending Tasks</th>
+                                </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="table-cell"><div class="patient-name">Sophia Bennett</div><span class="risk-badge high-risk">High Risk</span></td>
+                                    <td class="table-cell">201</td>
+                                    <td class="table-cell">32 weeks</td>
+                                    <td class="table-cell">No significant changes</td>
+                                    <td class="table-cell">Administer medication</td>
+                                </tr>
+                                <tr>
+                                    <td class="table-cell"><div class="patient-name">Olivia Carter</div><span class="risk-badge high-risk">High Risk</span></td>
+                                    <td class="table-cell">205</td>
+                                    <td class="table-cell">28 weeks</td>
+                                    <td class="table-cell text-red-600 font-semibold">Increased blood pressure</td>
+                                    <td class="table-cell">Monitor vital signs</td>
+                                </tr>
+                                <tr>
+                                    <td class="table-cell"><div class="patient-name">Emma Davis</div><span class="risk-badge high-risk">High Risk</span></td>
+                                    <td class="table-cell">210</td>
+                                    <td class="table-cell">36 weeks</td>
+                                    <td class="table-cell">Scheduled for C-section</td>
+                                    <td class="table-cell">Prepare for surgery</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <section>
+                        <h2 class="typography_h2 mb-4 flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-[var(--moderate-risk-text)]"></span>
+                            Moderate Risk Patients
+                        </h2>
+                        <div class="table-container">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="table-header" scope="col">Patient</th>
+                                    <th class="table-header" scope="col">Room</th>
+                                    <th class="table-header" scope="col">Gestational Age</th>
+                                    <th class="table-header" scope="col">Key Updates</th>
+                                    <th class="table-header" scope="col">Pending Tasks</th>
+                                </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="table-cell"><div class="patient-name">Ava Evans</div><span class="risk-badge moderate-risk">Moderate Risk</span></td>
+                                    <td class="table-cell">215</td>
+                                    <td class="table-cell">20 weeks</td>
+                                    <td class="table-cell">Routine check-up</td>
+                                    <td class="table-cell">Schedule next appointment</td>
+                                </tr>
+                                <tr>
+                                    <td class="table-cell"><div class="patient-name">Isabella Foster</div><span class="risk-badge moderate-risk">Moderate Risk</span></td>
+                                    <td class="table-cell">220</td>
+                                    <td class="table-cell">24 weeks</td>
+                                    <td class="table-cell">No significant changes</td>
+                                    <td class="table-cell">Review lab results</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <section>
+                        <h2 class="typography_h2 mb-4 flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-[var(--low-risk-text)]"></span>
+                            Low Risk Patients
+                        </h2>
+                        <div class="table-container">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="table-header" scope="col">Patient</th>
+                                    <th class="table-header" scope="col">Room</th>
+                                    <th class="table-header" scope="col">Gestational Age</th>
+                                    <th class="table-header" scope="col">Key Updates</th>
+                                    <th class="table-header" scope="col">Pending Tasks</th>
+                                </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="table-cell"><div class="patient-name">Chloe Hayes</div><span class="risk-badge low-risk">Low Risk</span></td>
+                                    <td class="table-cell">230</td>
+                                    <td class="table-cell">12 weeks</td>
+                                    <td class="table-cell">No significant changes</td>
+                                    <td class="table-cell">Provide prenatal education</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <section>
+                        <h2 class="typography_h2 mb-4">Flagged Communications</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-yellow-400">
+                                <div class="flex items-center justify-between mb-2">
+                                    <p class="font-semibold text-text-primary">Sophia Bennett (Room 201)</p>
+                                    <span class="text-xs text-text-secondary">1h ago</span>
+                                </div>
+                                <p class="text-sm text-text-secondary mb-3">"Patient expressed anxiety about labor."</p>
+                                <div class="flex items-center gap-2">
+                                    <svg class="h-5 w-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path clip-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" fill-rule="evenodd"></path>
+                                    </svg>
+                                    <p class="text-sm font-medium text-text-primary">Follow-up: Provide counseling resources.</p>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-yellow-400">
+                                <div class="flex items-center justify-between mb-2">
+                                    <p class="font-semibold text-text-primary">Olivia Carter (Room 205)</p>
+                                    <span class="text-xs text-text-secondary">3h ago</span>
+                                </div>
+                                <p class="text-sm text-text-secondary mb-3">"Family requested update on blood pressure."</p>
+                                <div class="flex items-center gap-2">
+                                    <svg class="h-5 w-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path clip-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" fill-rule="evenodd"></path>
+                                    </svg>
+                                    <p class="text-sm font-medium text-text-primary">Follow-up: Contact family with update.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<script defer="" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+
+</body></html>
