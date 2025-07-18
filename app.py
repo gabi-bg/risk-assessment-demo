@@ -41,5 +41,10 @@ def handover():
 def parent_view():
     return render_template('parent_view.html')
 
+@app.route('/guidelines')
+def guidelines():
+    return render_template('guidelines.html')
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True)
